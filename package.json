@@ -2,7 +2,16 @@
   "name": "conditional-navigation-options",
   "version": "0.0.1",
   "description": "The HOC that achieve applying navigationOptions based on the store selector.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PeterBLITZ/conditional-navigation-options.git"
@@ -24,6 +33,13 @@
   "homepage": "https://github.com/PeterBLITZ/conditional-navigation-options#readme",
   "peerDependencies": {
     "react": "16.8.3",
-    "react-redux": "7.1.0"
+    "react-redux": "7.1.0",
+    "redux": "4.0.4"
+  },
+  "devDependencies": {
+    "@types/react": "^16.8.23",
+    "@types/react-navigation": "^3.0.7",
+    "@types/react-redux": "^7.1.1",
+    "typescript": "^3.5.3"
   }
 }
