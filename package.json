@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "The HOC that achieve applying navigationOptions based on the store selector.",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PeterBLITZ/conditional-navigation-options.git"
+  },
   "keywords": [
     "react-navigation",
     "navigationOptions",
@@ -14,6 +18,10 @@
   ],
   "author": "Peter Blitz",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PeterBLITZ/conditional-navigation-options/issues"
+  },
+  "homepage": "https://github.com/PeterBLITZ/conditional-navigation-options#readme",
   "peerDependencies": {
     "react": "16.8.3",
     "react-redux": "7.1.0"
