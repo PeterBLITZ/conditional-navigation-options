@@ -1,0 +1,21 @@
+{
+  "name": "conditional-navigation-options",
+  "version": "0.0.1",
+  "description": "The HOC that achieve applying navigationOptions based on the store selector.",
+  "main": "index.js",
+  "keywords": [
+    "react-navigation",
+    "navigationOptions",
+    "react",
+    "react-native",
+    "redux",
+    "react-redux",
+    "conditional"
+  ],
+  "author": "Peter Blitz",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "16.8.3",
+    "react-redux": "7.1.0"
+  }
+}
