@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withCondition to match snapshot falsy selector 1`] = `
+<View>
+  Right
+</View>
+`;
+
+exports[`withCondition to match snapshot truthy selector 1`] = `
+<View>
+  Left
+</View>
+`;
