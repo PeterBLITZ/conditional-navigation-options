@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/PeterBLITZ/conditional-navigation-options.svg?branch=master)](https://travis-ci.org/PeterBLITZ/conditional-navigation-options)
+[![codecov](https://codecov.io/gh/PeterBLITZ/conditional-navigation-options/branch/master/graph/badge.svg)](https://codecov.io/gh/PeterBLITZ/conditional-navigation-options)
 
 # The HOC that achieve applying navigation options based on the store selector.
 
