@@ -13,7 +13,7 @@ import {
 export type BoolFromState = <T>(state: T) => boolean;
 
 export type NavigationOptionsCb = (
-  props: NavigationScreenConfigProps
+  props: NavigationScreenConfigProps,
 ) => NavigationScreenOptions;
 
 export type NavigationOptions = NavigationScreenOptions | NavigationOptionsCb;
@@ -26,7 +26,7 @@ export interface Config {
     };
   };
   isFunction: (
-    navigationOptions: NavigationOptions
+    navigationOptions: NavigationOptions,
   ) => navigationOptions is NavigationOptionsCb;
 }
 
@@ -40,7 +40,7 @@ export default function withCondition(
   Left: NavigationComponent,
   Right: NavigationComponent,
   conditionFromState: BoolFromState,
-  { store: userStore, context, isFunction }: Config = { ...defaultOptions }
+  { store: userStore, context, isFunction }: Config = { ...defaultOptions },
 ): NavigationComponent {
   function check(): boolean {
     const store = userStore || context._currentValue.store;
@@ -48,7 +48,7 @@ export default function withCondition(
   }
 
   return class Conditional extends React.PureComponent {
-    static navigationOptions: NavigationOptions = args => {
+    public static navigationOptions: NavigationOptions = args => {
       const navigationOptions = check()
         ? Left.navigationOptions
         : Right.navigationOptions;
@@ -58,7 +58,7 @@ export default function withCondition(
         : navigationOptions;
     };
 
-    render() {
+    public render() {
       return check() ? <Left {...this.props} /> : <Right {...this.props} />;
     }
   };
