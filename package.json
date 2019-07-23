@@ -1,6 +1,6 @@
 {
   "name": "conditional-navigation-options",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The HOC that achieve applying navigationOptions based on the store selector.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
