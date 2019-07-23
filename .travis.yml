@@ -2,5 +2,5 @@ language: node_js
 node_js:
   - stable
 script:
-  - npm test
+  - npm run ci
   - codecov -f coverage/*.json
