@@ -5,7 +5,7 @@
 
 # The HOC that achieve applying navigation options based on the store selector.
 
-## How to install
+## Install
 
 `npm i conditional-navigation-options`
 
@@ -13,38 +13,93 @@ or
 
 `yarn add conditional-navigation-options`
 
+## Live example
+
+https://snack.expo.io/@peterblitz/conditional-navigation-options
+
 ## How to use
 
 ```
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { useCallback } from 'react';
+import { Text, View, Button } from 'react-native';
+import { createStore } from 'redux';
+import { Provider, useDispatch } from 'react-redux';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
+
 import withCondition from 'conditional-navigation-options';
 
-function Main(props) {
+function Home({ navigation }) {
+  const dispatch = useDispatch();
+  const navigateToMain = useCallback(() => navigation.navigate('Main'));
+  const setAccess = access =>
+    useCallback(() => dispatch({ type: 'SET_ACCESS', payload: access }), [
+      dispatch,
+    ]);
+
   return (
-    <View {...props}>
-      <Text>Main</Text>
+    <View style={{ flex: 1, padding: 50 }}>
+      <Button onPress={navigateToMain} title="Navigate to Main" />
+      <View style={{ height: 50 }} />
+      <Button onPress={setAccess('grant')} title="Grant access" color="green" />
+      <View style={{ height: 20 }} />
+      <Button onPress={setAccess('denied')} title="Deny access" color="red" />
     </View>
   );
 }
 
-Main.navigationOptions = {
-  headerTitle: 'Main',
+Home.navigationOptions = {
+  title: 'Home',
 };
 
-function AccessDenied(props) {
+function Granted() {
   return (
-    <View {...props}>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Access granted</Text>
+    </View>
+  );
+}
+
+Granted.navigationOptions = {
+  title: 'Access granted',
+};
+
+function Denied() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Access denied</Text>
     </View>
   );
 }
 
-AccessDenied.navigationOptions = {
-  headerTitle: 'Access denied',
+Denied.navigationOptions = {
+  title: 'Access denied',
 };
 
-const roleSelector = state => state.auth.role === 'admin';
+const reducer = (state = 'denied', action) => {
+  switch (action.type) {
+    case 'SET_ACCESS':
+      return action.payload;
+    default:
+      return state;
+  }
+};
 
-export default withCondition(Main, AccessDenied, roleSelector);
+const store = createStore(reducer);
+
+const AppNavigator = createAppContainer(
+  createStackNavigator({
+    Home,
+    Main: withCondition(Granted, Denied, state => state === 'grant'),
+  })
+);
+
+export default function App() {
+  return (
+    <Provider store={store}>
+      <View style={{ flex: 1, backgroundColor: 'white' }}>
+        <AppNavigator />
+      </View>
+    </Provider>
+  );
+}
 ```
